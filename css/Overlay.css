@@ -1,0 +1,3018 @@
+/*?-------------------------------------------------------------------------------------------------------------?*/
+/*?   1(p-x)    2(p-x)   3(p-x)    4(p-x)    5(p-x)    6(p-x)    7(p-x)    8(p-x)    9(p-x)   10(p-x)  11(p-x)  ?*/
+/*?  0.154vh   0.308vh  0.462vh   0.616vh   0.770vh   0.924vh   1.078vh   1.232vh   1.386vh   1.540vh  1.694vh  ?*/
+/*?                                                                                                             ?*/
+/*?   1(v-h)    2(v-h)   3(v-h)   4(v-h)    5(v-h)    6(v-h)    7(v-h)    8(v-h)    9(v-h)   10(v-h)   11(v-h)  ?*/
+/*?  1.078vh   2.002vh  3.08vh   4.004vh   5.082vh   6.006vh   7.084vh   8.008vh   9.086vh   10.01vh  11.088vh  ?*/
+/*?-------------------------------------------------------------------------------------------------------------?*/
+:root {
+	--Border-Thick: 0.308vh;
+	--Animation-Duration: 0.5s;
+	--Animation-Offset: 0.2s;
+	/* --Animation-Duration: 0s; Turn Animation Speed Up OR Down With This */
+	/* --Animation-Offset: 0s; Delay Before Animation Starts (waiting for app to com on screen) */
+}
+@font-face {
+	font-family: Caveat;
+	src: url(../fonts/Caveat-Regular.ttf);
+}
+@font-face {
+	font-family: Druk-Cyr;
+	src: url(../fonts/DrukCyr-Medium.ttf);
+}
+@font-face {
+	font-family: Brothership;
+	src: url(../fonts/Brothership.ttf);
+}
+/*-------------------------------------------Global-------------------------------------------*/
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	user-select: none;
+	color: hsl(0, 0%, 100%);
+	font-family: "Gilroy", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.3vh;
+	line-height: 100%;
+}
+*::after,
+*::before,
+* {
+	transition: all 0.3s ease-in-out 0s;
+}
+body {
+	--Zoom: 1.5;
+	--X-Indent: -50%;
+	--Y-Indent: -54%;
+	--Left: 50%;
+	--Top: 50%;
+	--Zoom: 1;
+	--X-Indent: -50%;
+	--Y-Indent: -50%;
+	--Left: 50%;
+	--Top: 50%;
+}
+body {
+	background: hsl(0, 0%, 0%);
+	overflow: hidden;
+	transition: none;
+}
+.Main {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: 100vw;
+	height: 100vh;
+	left: 50%;
+	top: 50%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.Main {
+	transform: translate(var(--X-Indent), var(--Y-Indent));
+	width: 100vw;
+	height: 100vh;
+	left: var(--Left);
+	top: var(--Top);
+	zoom: var(--Zoom);
+}
+.Background {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	top: 50%;
+}
+.Background {
+	transform: translate(var(--X-Indent), var(--Y-Indent));
+	width: 100vw;
+	height: 100vh;
+	left: var(--Left);
+	top: var(--Top);
+	zoom: var(--Zoom);
+}
+.ExtraData {
+	display: none;
+}
+.Back-Test {
+	pointer-events: none;
+	opacity: 0.5;
+}
+.Content {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: hsla(0, 100%, 50%, 0.26);
+}
+::-webkit-scrollbar {
+	width: 0.25vh;
+	height: 0.25vh;
+	border-radius: 100vh;
+	margin-bottom: 1vh;
+	background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 100vh;
+	margin-bottom: 1vh;
+	background: hsla(0, 0%, 100%, 0.7);
+}
+::-webkit-scrollbar-track {
+	border-radius: 1vh;
+	margin-bottom: 1vh;
+	background: hsla(0, 0%, 100%, 0.1);
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: hsl(220, 100%, 60%);
+}
+::-webkit-scrollbar-thumb:active {
+	background-color: hwb(220 19% 30%);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	margin: 0;
+	-webkit-appearance: none;
+}
+span {
+	font-family: inherit;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+.Border {
+	--Border-Thickness: 0.12vh;
+	position: absolute !important;
+	transform: translate(-50%, -50%) !important;
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	top: 50%;
+	border-radius: inherit;
+	margin: 0 !important;
+	pointer-events: none;
+}
+.Border::after {
+	--Transparency: 0%;
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 0.12vh;
+	background: radial-gradient(hsl(0, 0%, 100%), transparent 90%);
+	-webkit-mask: linear-gradient(hsl(0, 0%, 100%) 0 0) content-box,
+		linear-gradient(hsl(0, 0%, 100%) 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+}
+.Highlight {
+	color: hsl(137, 100%, 70%);
+}
+
+/*-_- Tablet-Backgrounds -_-*/
+[data-Tablet="Show"] .Tablet {
+	--Start-Point: 0vh;
+	transition: 1s cubic-bezier(0, 0.5, 0.5, 1.5);
+}
+.Tablet {
+	--Start-Point: -100vh;
+	position: absolute;
+	transform: translate(-50%, calc(-50% - var(--Start-Point)));
+	/* transform: translate(-50%, -50%); */
+	width: 91.35vh;
+	height: 64.45vh;
+	left: 50%;
+	top: 50%;
+	border-radius: 3.5vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 3.6vh 4.15vh;
+	overflow: hidden;
+	transition: 0.5s cubic-bezier(0.5, 0, 1, 0.5);
+}
+.Tablet-Frame {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: 91.35vh;
+	height: 64.45vh;
+	left: 50%;
+	top: 50%;
+	pointer-events: none;
+}
+.Tablet-Backs {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: calc(90.46vh + 2px);
+	height: calc(63.56vh + 2px);
+	left: 50%;
+	top: 50%;
+	border-radius: 3vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+.Main-Back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	background: radial-gradient(50% 50% at 50% 50%, hsla(0, 0%, 0%, 0.9) 0%, hsla(0, 0%, 2.7%, 1) 100%);
+	background: radial-gradient(35.79% 35.79% at 50% 64.21%, hsla(219.6, 100%, 66.5%, 0.2) 0%, hsla(219.5, 50.3%, 28.4%, 0.1) 100%), radial-gradient(50% 50% at 50% 50%, hsl(220, 60%, 3%) 0%, hsla(218.8, 73.9%, 4.5%, 1) 100%);
+}
+.App-Back {
+	position: absolute;
+	transform: scale(1.25);
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	background: radial-gradient(35.79% 35.79% at 50% 64.21%, hsla(219.6, 100%, 66.5%, 0.2) 0%, hsla(219.5, 50.3%, 28.4%, 0.1) 100%), radial-gradient(50% 50% at 50% 50%, hsl(220, 60%, 3%) 0%, hsla(218.8, 73.9%, 4.5%, 1) 100%);
+	opacity: 0;
+}
+[data-app="MainMenu"] .MainMenu-App-Back,
+[data-App="MoneyWash"] .MoneyWash-App-Back,
+[data-App="Mails"] .Mails-App-Back,
+[data-App="LogOutput"] .LogOutput-App-Back,
+[data-App="MOTD"] .MOTD-App-Back,
+[data-App="BusinessManage"] .BusinessManage-App-Back,
+[data-App="Members"] .Members-App-Back,
+[data-App="BusinessUpgrade"] .BusinessUpgrade-App-Back,
+[data-App="Squads"] .Squads-App-Back,
+[data-App="BusinessBuy"] .BusinessBuy-App-Back,
+[data-App="BuyVehicle"] .BuyVehicle-App-Back,
+[data-App="BuyVehicleSell"] .BuyVehicle-App-Back,
+[data-App="BuyItemDelivery"] .BuyItem-App-Back,
+[data-App="BuyItemLagger"] .BuyItem-App-Back,
+[data-App="BuyItem"] .BuyItem-App-Back {
+	transform: scale(1);
+	opacity: 1;
+}
+.MoneyWash-App-Back {
+	background: radial-gradient(50% 50% at 50% 50%, hsl(219, 68%, 7%) 0%, hsla(220, 60%, 2.9%, 1) 73.33%, hsla(219, 76.9%, 5.1%, 1) 95.83%), radial-gradient(50% 50% at 50% 50%, hsla(0, 0%, 0%, 0.9) 0%, hsla(0, 0%, 2.7%, 1) 100%);
+}
+.LogOutput-App-Back {
+	background: radial-gradient(45.39% 64.97% at 75.47% 51.49%, hsla(0, 0%, 50.6%, 0.2) 0%, rgba(0, 0, 0, 0) 84.18%), radial-gradient(30.36% 43.46% at 27.29% 64.73%, hsl(226, 100%, 64%) 0%, rgba(72, 114, 255, 0) 100%), radial-gradient(67.78% 67.78% at 50% 50%, hsl(220, 60%, 3%) 0%, hsla(219, 76.9%, 5.1%, 1) 95.83%);
+}
+
+/*-_- Tablet-Back-Btn -_-*/
+.Tablet-Back-Btn {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: 29.3vh;
+	height: 0.4vh;
+	left: 50%;
+	top: 96.84%;
+	box-sizing: border-box;
+	box-sizing: content-box;
+	border-radius: 100vh;
+	padding: 0.3vh;
+	z-index: 10;
+}
+.Tablet-Back-Btn-Background {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	background: hsl(0deg 0% 100%);
+	z-index: 10;
+}
+.Tablet-Back-Btn:hover .Tablet-Back-Btn-Background {
+	filter: brightness(0.5);
+}
+.Tablet-Back-Btn:active .Tablet-Back-Btn-Background {
+	filter: brightness(1);
+	background: rgb(0, 140, 255);
+	transition: none;
+}
+[data-app="MainMenu"] .Tablet-Back-Btn {
+	pointer-events: none;
+	opacity: 0;
+}
+
+/*-_- Tablet-TopBar -_-*/
+.Tablet-TopBar {
+	position: relative;
+	width: 100%;
+	height: 2.7vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 3.75vh;
+}
+.Tablet-TopBar-Time {
+	position: relative;
+	height: 100%;
+	display: flex;
+}
+.Tablet-TopBar-Time-Text {
+	position: relative;
+	margin-top: 0.2vh;
+	color: hsl(0, 0%, 100%);
+	font-family: 'TT Norms', sans-serif;
+	font-size: 0.84vh;
+}
+.Time-Camma::after,
+.Time-Day::after {
+	content: "\00a0";
+}
+.Tablet-TopBar-Title {
+	position: relative;
+	width: fit-content;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	background: radial-gradient(142.65% 142.65% at 50% 50%, hsla(0, 0%, 100%, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: 'Caveat', sans-serif;
+	font-weight: 700;
+	font-size: 1.65vh;
+	text-align: center;
+}
+.Tablet-TopBar-Notif {
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: row-reverse;
+}
+.Battery-Container {
+	position: relative;
+	width: 1.43vh;
+	height: 0.68vh;
+	border: solid 0.06vh hsl(0, 0%, 100%, 35%);
+	border-radius: 0.25vh;
+	display: flex;
+	justify-content: flex-end;
+	padding: 0.07vh;
+	margin-left: 0.55vh;
+	margin-top: 0.4vh;
+}
+.Battery-Level {
+	position: relative;
+	width: 70%;
+	height: 100%;
+	border-radius: 0.1vh;
+	background: hsl(0deg 0% 100%);
+}
+.Battery-Percent {
+	position: relative;
+	margin-left: 0.45vh;
+	margin-top: 0.15vh;
+	color: hsl(0, 0%, 100%);
+	font-family: 'TT Norms', sans-serif;
+	font-size: 0.91vh;
+	letter-spacing: 0vh;
+	text-align: center;
+}
+.Battery-Percent::after {
+	content: "%";
+	transition: none;
+}
+.Wifi-Icon {
+	position: relative;
+	height: 0.83vh;
+	margin-top: 0.2vh;
+}
+
+/*-_- App-Titles -_-*/
+.App-Titles {
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 0.5vh;
+}
+.App-Title-Container {
+	position: relative;
+	width: 100%;
+	height: 4.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0.9vh;
+}
+.App-Text-Container {
+	position: relative;
+	width: 100%;
+	height: 1.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.App-Title {
+	position: absolute;
+	transform: translateY(-3vh);
+	display: flex;
+	align-items: center;
+	margin-top: -0.8vh;
+	pointer-events: none;
+	background: radial-gradient(88.04% 114.6% at 50% 50%, hsla(226.2, 100%, 64.1%, 0.7) 0%, hsla(226.2, 60%, 12.7%, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 800;
+	font-size: 6.05vh;
+	text-transform: uppercase;
+	text-align: center;
+	-webkit-text-stroke: 0.1vh hsl(226, 100%, 64%);
+	opacity: 0;
+	transition: all 0.2s ease-in-out 0s;
+}
+.App-Text {
+	position: absolute;
+	transform: translateY(3vh);
+	display: flex;
+	align-items: center;
+	pointer-events: none;
+	background: radial-gradient(75% 75% at 50% 50%, hsla(0, 0%, 100%, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: 'Caveat', sans-serif;
+	font-size: 2.05vh;
+	text-align: center;
+	opacity: 0;
+	transition: all 0.2s ease-in-out 0s;
+}
+[data-app="MainMenu"] .App-Title-MainMenu,
+[data-app="MainMenu"] .App-Text-MainMenu,
+[data-App="MoneyWash"] .App-Title-MoneyWash,
+[data-App="MoneyWash"] .App-Text-MoneyWash,
+[data-App="Mails"] .App-Title-Mails,
+[data-App="Mails"] .App-Text-Mails,
+[data-App="LogOutput"] .App-Title-LogOutput,
+[data-App="LogOutput"] .App-Text-LogOutput,
+[data-App="MOTD"] .App-Title-MOTD,
+[data-App="MOTD"] .App-Text-MOTD,
+[data-App="BusinessManage"] .App-Title-BusinessManage,
+[data-App="BusinessManage"] .App-Text-BusinessManage,
+[data-App="Members"] .App-Title-Members,
+[data-App="Members"] .App-Text-Members,
+[data-App="BusinessUpgrade"] .App-Title-BusinessUpgrade,
+[data-App="BusinessUpgrade"] .App-Text-BusinessUpgrade,
+[data-App="Squads"] .App-Title-Squads,
+[data-App="Squads"] .App-Text-Squads,
+[data-App="BusinessBuy"] .App-Title-BusinessBuy,
+[data-App="BusinessBuy"] .App-Text-BusinessBuy,
+[data-App="BuyVehicle"] .App-Title-BuyVehicle,
+[data-App="BuyVehicleSell"] .App-Title-BuyVehicle,
+[data-App="BuyVehicle"] .App-Text-BuyVehicle,
+[data-App="BuyVehicleSell"] .App-Text-BuyVehicle,
+[data-App="BuyItemDelivery"] .App-Title-BuyItem,
+[data-App="BuyItemLagger"] .App-Title-BuyItem,
+[data-App="BuyItem"] .App-Title-BuyItem,
+[data-App="BuyItemDelivery"] .App-Text-BuyItem,
+[data-App="BuyItemLagger"] .App-Text-BuyItem,
+[data-App="BuyItem"] .App-Text-BuyItem {
+	transform: translateY(0vh);
+	opacity: 1;
+	transition: all 0.4s ease-in-out 0s;
+}
+
+/*-_- App-Container -_-*/
+.Apps-Container {
+	position: relative;
+	width: 100%;
+	height: -webkit-fill-available;
+	height: 100%;
+}
+.App {
+	position: absolute;
+	transform: rotate(0deg) scale(1.2);
+	transform-origin: center center;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	/* pointer-events: none; */
+	opacity: 0;
+	z-index: -1;
+}
+[data-app="MainMenu"] .App-MainMenu,
+[data-App="MoneyWash"] .App-MoneyWash,
+[data-App="Mails"] .App-Mails,
+[data-App="LogOutput"] .App-LogOutput,
+[data-App="MOTD"] .App-MOTD,
+[data-App="BusinessManage"] .App-BusinessManage,
+[data-App="Members"] .App-Members,
+[data-App="BusinessUpgrade"] .App-BusinessUpgrade,
+[data-App="Squads"] .App-Squads,
+[data-App="BusinessBuy"] .App-BusinessBuy,
+[data-App="BuyVehicle"] .App-BuyVehicle,
+[data-App="BuyVehicleSell"] .App-BuyVehicle,
+[data-App="BuyItemDelivery"] .App-BuyItem,
+[data-App="BuyItemLagger"] .App-BuyItem,
+[data-App="BuyItem"] .App-BuyItem {
+	transform: scale(1);
+	opacity: 1;
+	/* pointer-events: all; */
+	z-index: 2;
+}
+
+/*-_- MainMenu -_-*/
+.App-MainMenu {
+	padding-inline: 2.25vh;
+	padding-bottom: 5.4vh;
+}
+.MainMenu {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 2.3vh;
+	padding-top: 2vh;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: inline mandatory;
+}
+.MainMenu-App {
+	position: relative;
+	width: 17.9vh;
+	height: 16.1vh;
+	border-radius: 1.2vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 0.9vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	scroll-snap-align: start;
+}
+.MainMenu-App-Image-Container {
+	position: absolute;
+	width: 100%;
+	height: 50%;
+	left: 0;
+	top: 0;
+	border-radius: 1.2vh;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+}
+.MainMenu-App-Image {
+	position: relative;
+	height: 100%;
+	object-fit: contain;
+	-webkit-mask-image: linear-gradient(to top, hsla(0, 0%, 0%, 0), hsl(0, 0%, 0%));
+}
+.MainMenu-App-Title {
+	position: relative;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 700;
+	font-size: 1.12vh;
+	text-transform: uppercase;
+	text-align: center;
+}
+.MainMenu-App-Text {
+	position: relative;
+	max-width: 11vh;
+	width: 10vh;
+	display: flex;
+	align-items: center;
+	margin-top: 1.75vh;
+	background: radial-gradient(116.25% 116.25% at 50% 50%, hsla(0, 0%, 100%, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: 'Caveat', sans-serif;
+	font-size: 1.6vh;
+	line-height: 1.3vh;
+	text-align: center;
+}
+.MainMenu-App-StartBtn-Container {
+	position: relative;
+	width: 100%;
+}
+.MainMenu-App-StartBtn {
+	position: relative;
+	width: 100%;
+	border: solid 0.13vh hsl(220, 100%, 60%);
+	border-radius: 0.6vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-block: 0.5vh 0.6vh;
+	margin-top: 1vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+}
+.MainMenu-App-StartBtn:hover {
+	filter: brightness(0.5);
+}
+.MainMenu-App-StartBtn:active {
+	filter: brightness(1.5);
+	transition: none;
+}
+
+/*-_- App-MoneyWash -_-*/
+.App-MoneyWash {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 2.1vh 1.6vh;
+}
+.MoneyWash-Title-Box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 1.2vh;
+}
+.MoneyWash-Title {
+	position: relative;
+	display: flex;
+	align-items: center;
+	background: radial-gradient(127.27% 127.27% at 50% 50%, hsla(0, 0%, 100%, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: 'Caveat', sans-serif;
+	font-size: 2.01vh;
+	text-align: center;
+}
+.MoneyWash-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-top: -0.2ch;
+	background: radial-gradient(160.42% 160.42% at 50% 50%, hsla(219.6, 100%, 59.6%, 0.9) 0%, hsla(0, 0%, 0%, 0.9) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 700;
+	font-size: 2.27vh;
+}
+.MoneyWash-Text::before {
+	content: "$\00a0";
+}
+.MoneyWash-Clock-Container {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: 19.6vh;
+	aspect-ratio: 1;
+	left: 50%;
+	top: 42.2%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.MoneyWash-Clock-Bar {
+	position: absolute;
+	width: 203%;
+	aspect-ratio: 1;
+	fill: none;
+}
+.MoneyWash-Clock-Bar-Track {
+	transform-origin: center;
+	fill: none;
+	stroke: hsla(0, 0%, 0%, 0.4);
+	stroke-width: 1.9%;
+}
+.MoneyWash-Clock-Bar-Val {
+	--Rate: 100;
+	--Clamped-Rate: clamp(0, var(--Rate), 100);
+	transform: rotate(-12deg);
+	transform-origin: center;
+	fill: none;
+	stroke: hsl(226, 100%, 64%);
+	stroke-width: 0.033vh;
+	stroke-width: 1.9%;
+	stroke-linecap: round;
+	stroke-dasharray: 9.267;
+	stroke-dashoffset: 0;
+	transition: all 1s ease-in-out;
+}
+[data-IsWashing="true"] .MoneyWash-Clock-Bar-Val {
+	transform: rotate(272.5deg);
+	stroke-dasharray: 148.3;
+	stroke-dashoffset: calc(-1 * var(--Clamped-Rate) / 100 * 148.3 - 148.3);
+	transition: all 0.1s linear;
+}
+[data-MaxReached="true"] .MoneyWash-Btn {
+	background: radial-gradient(76% 76% at 50% 50%, hsl(0, 100%, 60%) 0%, hsl(6, 100%, 60%) 100%);
+}
+[data-MaxReached="true"] .MoneyWash-Black-Money {
+	background: radial-gradient(160.42% 160.42% at 50% 50%, hsl(0deg 100% 59.61% / 90%) 0%, hsl(0deg 0% 0% / 90%) 100%);
+	-webkit-background-clip: text;
+}
+[data-MaxReached="true"] .MoneyWash-Ammount {
+	color: hsl(0, 100%, 60%);
+}
+.MoneyWash-Ammount::placeholder {
+	color: hsl(225, 18%, 44%);
+}
+.MoneyWash-Clock {
+	position: relative;
+	margin-top: -0.2vh;
+	filter: drop-shadow(0 0 0.5vh hsla(0, 0%, 100%, 0.4));
+	background: linear-gradient(180deg, hsl(0, 0%, 100%) 50.88%, hsl(0, 0%, 35%) 105.7%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: 'Druk Cyr', sans-serif;
+	font-weight: 500;
+	font-size: 4.2vh;
+	text-transform: uppercase;
+}
+.MoneyWash-Clock::after {
+	/* content: "\00a0MIN"; */
+}
+.MoneyWash-Clock-Text {
+	position: relative;
+	padding-inline: 1vh;
+	margin-inline: -1vh;
+	margin-top: -1.1vh;
+	filter: drop-shadow(0 -0.1vh 0.1vh hsla(0, 0%, 0%, 0.8));
+	background: radial-gradient(76% 76% at 50% 50%, hsl(220, 100%, 60%) 0%, hsl(226, 100%, 60%) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: 'Brothership', sans-serif;
+	font-size: 1.9vh;
+}
+.MoneyWash-Money-Box {
+	position: relative;
+	width: 14.3vh;
+	height: 2.8vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 1.5vh;
+}
+[data-IsWashing="true"] .MoneyWash-Money-Box {
+	pointer-events: none;
+	filter: grayscale(1) opacity(0.5);
+}
+.MoneyWash-Ammount {
+	position: relative;
+	width: 11.3vh;
+	height: 100%;
+	outline: none;
+	border: none;
+	border-radius: 0.3vh;
+	padding: 0.6vh 1.2vh;
+	background: no-repeat;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	font-size: 1.1vh;
+}
+.MoneyWash-Btn {
+	position: relative;
+	height: calc(100% + 0.2vh);
+	aspect-ratio: 1;
+	border-radius: 0.5vh;
+	background: radial-gradient(76% 76% at 50% 50%, hsl(220, 100%, 60%) 0%, hsl(226, 100%, 59%) 100%);
+	z-index: 1;
+}
+.MoneyWash-Btn:hover {
+	filter: brightness(0.5);
+}
+.MoneyWash-Btn:active {
+	filter: brightness(1.5);
+	transition: none;
+}
+
+/*-_- App-Mails -_-*/
+.App-Mails {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 1.9vh 15.3vh 0vh;
+}
+.Mails-Container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.9vh;
+	margin-left: 1.14vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: block mandatory;
+}
+.Mail-Box {
+	position: relative;
+	width: calc(100% - 1.12vh);
+	min-height: 5.3vh;
+	height: fit-content;
+	border-radius: 0.7vh;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.1vh 0.6vh;
+	padding: 0.65vh;
+	padding-left: 5.25vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	scroll-snap-align: start;
+}
+.Mail-Box-Avatar-Box {
+	position: absolute;
+	height: 4vh;
+	aspect-ratio: 1;
+	left: 0.6vh;
+	top: 0.6vh;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	overflow: hidden;
+}
+.Mail-Box-Avatar {
+	position: relative;
+	height: 1.6vh;
+}
+.Mail-Box-Top {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 0.4vh;
+}
+.Mail-Box-Sender {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsla(0, 0%, 100%, 0.3);
+	text-align: center;
+}
+.Mail-Box-Time {
+	position: relative;
+	border: 0.1vh solid hsl(220, 100%, 60%);
+	border-radius: 0.3vh;
+	display: flex;
+	align-items: center;
+	padding: 0.2vh 0.25vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	color: hsl(0, 0%, 100%);
+	font-size: 0.92vh;
+	line-height: 87.5%;
+	text-align: center;
+}
+.Mail-Box-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-size: 1.2vh;
+	line-height: 1.3vh;
+}
+
+/*-_- App-LogOutput -_-*/
+.App-LogOutput {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 2.45vh 0.3vh 0vh 47.17vh;
+}
+.LogOutput-Tabs {
+	position: relative;
+	width: calc(100% - 1.1vh);
+	height: 3.15vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 0.9vh;
+	margin-bottom: 0.93vh;
+}
+.LogOutput-Tab {
+	position: relative;
+	width: 7.75vh;
+	height: 100%;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	color: hsl(0, 0%, 100%);
+	text-align: center;
+}
+.LogOutput-Tab-Container {
+	position: relative;
+	width: fit-content;
+	height: 100%;
+}
+.LogOutput-Tab:hover {
+	filter: brightness(0.5);
+}
+.LogOutput-Tab:active {
+	filter: brightness(1.5);
+	transition: none;
+}
+[data-ShowingTab="Vehicle"] [data-Tab="Vehicle"],
+[data-ShowingTab="Money"] [data-Tab="Money"],
+[data-ShowingTab="Shop"] [data-Tab="Shop"],
+[data-ShowingTab="Button"] [data-Tab="Button"] {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+}
+.LogOutput-Pins {
+	position: relative;
+	width: calc(100% - 1.8vh);
+	height: 2.92vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-inline: 2.4vh 2vh;
+	margin-bottom: 0.25vh;
+}
+.LogOutput-Pins-Line {
+	position: absolute;
+	transform: translateX(-50%);
+	width: 100%;
+	height: 0.12vh;
+	left: 50%;
+	top: 0;
+	background: linear-gradient(to left, transparent, hsl(226, 48%, 65%, 0.25), transparent);
+}
+.LogOutput-Pin {
+	position: relative;
+	display: flex;
+	align-items: center;
+	background: radial-gradient(50% 50% at 50% 50%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 120%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-weight: 500;
+	font-size: 1.5vh;
+	text-align: center;
+}
+.LogOutput-Boxes-Container {
+	position: relative;
+	width: 100%;
+	height: 33.7vh;
+	overflow: hidden;
+}
+.LogOutput-Boxes {
+	position: absolute;
+	width: calc(400% + 1vh);
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 1vh;
+}
+[data-ShowingTab="Vehicle"] .LogOutput-Boxes {
+	transform: translateX(-0%);
+}
+[data-ShowingTab="Money"] .LogOutput-Boxes {
+	transform: translateX(-25%);
+}
+[data-ShowingTab="Shop"] .LogOutput-Boxes {
+	transform: translateX(-50%);
+}
+[data-ShowingTab="Button"] .LogOutput-Boxes {
+	transform: translateX(-75%);
+}
+.LogOutput-Box-Section {
+	position: relative;
+	width: calc(25% - 1vh);
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.9vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: block mandatory;
+}
+.LogOutput-Box {
+	position: relative;
+	width: calc(100% - 0.88vh);
+	min-height: 4.18vh;
+	border-radius: 1.1vh;
+	display: grid;
+	grid-template-columns: 9vh 9vh 7.5vh;
+	justify-content: space-between;
+	align-items: center;
+	justify-items: center;
+	padding-inline: 2.3vh;
+	padding-block: 0.9vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	scroll-snap-align: start;
+}
+.LogOutput-Box-Text {
+	position: relative;
+	width: 100%;
+	font-size: 1.1vh;
+}
+.LogOutput-Box-Name {
+	position: relative;
+	text-align: left;
+}
+.LogOutput-Box-Action {
+	position: relative;
+	text-align: center;
+}
+.LogOutput-Box-Value {
+	position: relative;
+	text-align: right;
+}
+
+/*-_- App-MOTD -_-*/
+.App-MOTD {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 1.48vh;
+	padding: 1.9vh 16.4vh 0vh;
+}
+.MOTD-Box {
+	position: relative;
+	transform: translateX(3vh);
+	width: 100%;
+	border: 0.12 solid hsla(225.5, 48.1%, 64.5%, 0.3);
+	border-radius: 1.4vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding-block: 1.21vh 1.01vh;
+	background: hsla(225.5, 48.1%, 64.5%, 0.1);
+}
+.MOTD-Box-Announcer {
+	position: relative;
+	width: 10.8vh;
+	height: 2.82vh;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 0vh 0.35vh;
+}
+.MOTD-Box-Announcer-Avatar-Box {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 1;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.MOTD-Box-Announcer-Avatar {
+	position: relative;
+	height: 1.25vh;
+}
+.MOTD-Box-Announcer-Name {
+	position: relative;
+	color: hsla(0, 0%, 100%, 0.3);
+}
+.MOTD-Box-Announcer-Time {
+	position: relative;
+	border: 0.1vh solid hsl(220, 100%, 60%);
+	border-radius: 0.3vh;
+	display: flex;
+	align-items: center;
+	padding: 0.2vh 0.25vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	color: hsl(0, 0%, 100%);
+	font-size: 0.92vh;
+	line-height: 87.5%;
+	text-align: center;
+}
+.MOTD-Box-Text {
+	position: relative;
+	max-height: 16.1vh;
+	padding-inline: 3.4vh 3.3vh;
+	margin-right: 1vh;
+	margin-top: 1vh;
+	color: hsl(0, 0%, 100%);
+	font-size: 1.2vh;
+	line-height: 1.8vh;
+	text-align: center;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.MOTD-Input {
+	position: relative;
+	width: 100%;
+	height: 13.3vh;
+	outline: none;
+	border: none;
+	border-radius: 1.5vh;
+	padding: 1.45vh 1.95vh;
+	resize: none;
+	background: radial-gradient(172.57% 172.57% at 50% 50%, hsl(220, 46%, 5%) 0%, rgba(7, 11, 19, 0) 100%);
+	font-size: 1.2vh;
+	line-height: 1.8vh;
+	overflow: hidden;
+}
+.MOTD-Input::placeholder {
+	color: hsla(0, 0%, 100%, 0.1);
+}
+.MOTD-Btn-Container {
+	width: 100%;
+	height: fit-content;
+}
+.MOTD-Btn {
+	position: relative;
+	width: 100%;
+	height: 3.14vh;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 1.1vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: -0.1vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.MOTD-Input:placeholder-shown + .MOTD-Btn-Container .MOTD-Btn {
+	pointer-events: none;
+	filter: brightness(1) grayscale(1) opacity(0.5) !important;
+}
+.MOTD-Btn:hover {
+	filter: brightness(0.5);
+}
+.MOTD-Btn:active {
+	filter: brightness(1.5);
+	transition: none;
+}
+
+/*-_- App-BusinessManage -_-*/
+.App-BusinessManage {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0 1.5vh;
+	padding: 2.1vh 20.4vh 18.9vh;
+}
+.BusinessManage-Money-Box {
+	position: relative;
+	width: 11.1vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+.BusinessManage-Money-Tab-Container {
+	width: 100%;
+}
+.BusinessManage-Money-Tab {
+	position: relative;
+	width: 100%;
+	height: 3.2vh;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+[data-ShowingMoney="BlackMoeny"] [data-Money="BlackMoeny"],
+[data-ShowingMoney="WhiteMoeny"] [data-Money="WhiteMoeny"] {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+}
+.BusinessManage-Money-Tab:hover {
+	filter: brightness(0.5);
+}
+.BusinessManage-Money-Tab:active {
+	filter: brightness(1.5);
+	transition: none;
+}
+.BusinessManage-Money-Title {
+	position: relative;
+	margin-top: 0.75vh;
+	font-size: 1.1vh;
+}
+.BusinessManage-Money-Text {
+	position: relative;
+	padding-inline: 0.1vh;
+	margin-top: 0.1vh;
+	color: hsl(137, 100%, 70%);
+	font-size: 1.1vh;
+}
+[data-DepositVal] {
+	color: hsl(208, 100%, 60%);
+}
+.BusinessManage-Money-Text::before {
+	content: "$";
+}
+.BusinessManage-Money-Text::after {
+	content: "";
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: calc(100% + 1vh);
+	height: 100%;
+	left: 50%;
+	top: 50%;
+	border-radius: 0.5vh;
+	background: linear-gradient(0deg, hsl(0deg 100% 50% / 80%), transparent 50%);
+	opacity: 0;
+}
+[data-NotEnoughWhiteMoenyMoney="true"] [data-MoneyVal="WhiteMoeny"]::after,
+[data-NotEnoughBlackMoenyMoney="true"] [data-MoneyVal="BlackMoeny"]::after,
+[data-NotEnoughWhiteMoenyDeposit="true"] [data-DepositVal="WhiteMoeny"]::after,
+[data-NotEnoughBlackMoenyDeposit="true"] [data-DepositVal="BlackMoeny"]::after {
+	opacity: 1;
+}
+.BusinessManage-Ammount-Title {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1.5vh;
+	filter: drop-shadow(0 0.1vh 1vh hsla(0, 0%, 100%, 0.4));
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 700;
+	font-size: 1.4vh;
+	text-transform: uppercase;
+	text-align: center;
+}
+.BusinessManage-Ammount-Back {
+	position: relative;
+	width: 100%;
+	height: 6.1vh;
+	border-radius: 1vh;
+	margin-top: 1.1vh;
+	margin-bottom: -6.1vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+}
+.BusinessManage-Ammount {
+	position: relative;
+	width: 100%;
+	height: 6.1vh;
+	outline: none;
+	border: none;
+	margin-bottom: 1.6vh;
+	background: none;
+	background: none;
+	text-align: center;
+}
+.BusinessManage-Btn-Container {
+	position: relative;
+	width: 48.2%;
+}
+[data-NotEnoughWhiteMoenyMoney="true"] .BusinessManage-Btn-Container:nth-child(6) .BusinessManage-Btn,
+[data-NotEnoughBlackMoenyMoney="true"] .BusinessManage-Btn-Container:nth-child(6) .BusinessManage-Btn,
+[data-NotEnoughWhiteMoenyDeposit="true"] .BusinessManage-Btn-Container:nth-child(7) .BusinessManage-Btn,
+[data-NotEnoughBlackMoenyDeposit="true"] .BusinessManage-Btn-Container:nth-child(7) .BusinessManage-Btn {
+	pointer-events: none;
+	filter: grayscale(1) opacity(0.5) !important;
+}
+.BusinessManage-Ammount::placeholder {
+	color: hsla(0, 0%, 100%, 0.1);
+}
+.BusinessManage-Ammount:placeholder-shown ~ .BusinessManage-Btn-Container .BusinessManage-Btn {
+	pointer-events: none;
+	filter: grayscale(1) opacity(0.5) !important;
+}
+.BusinessManage-Btn {
+	position: relative;
+	width: 100%;
+	height: 4.46vh;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.BusinessManage-Btn:hover {
+	filter: brightness(0.5);
+}
+.BusinessManage-Btn:active {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+	transition: none;
+}
+
+/*-_- App-Members -_-*/
+.App-Members {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 2.1vh 0.1vh 9.1vh 1.1vh;
+}
+.Members {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: center;
+	gap: 1.2vh 1.6vh;
+	padding-right: 1vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: block mandatory;
+}
+.Member-Box {
+	position: relative;
+	transform: translate(0vh, 0vh);
+	width: 14.7vh;
+	height: 15.5vh;
+	border-radius: 1.2vh;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.4vh 0vh;
+	padding: 1.15vh 1vh 1vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	scroll-snap-align: start;
+}
+.Member-Avatar-Box {
+	position: relative;
+	width: 3.8vh;
+	height: 3.9vh;
+	border-radius: 0.4vh;
+	margin-right: 0.76vh;
+	overflow: hidden;
+}
+.Member-Avatar {
+	position: relative;
+	transform: translateX(-50%);
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	object-fit: cover;
+}
+.Member-Texts {
+	position: relative;
+	width: 8.1vh;
+	margin-bottom: 0.58vh;
+}
+.Member-Name {
+	position: relative;
+	margin-top: -0.15vh;
+	font-family: 'Akrobat', sans-serif;
+	font-size: 0.9vh;
+	font-size: 0.93vh;
+}
+.Member-Role {
+	position: relative;
+	max-width: 100%;
+	margin-top: 0.13vh;
+	color: hsl(225, 87%, 64%);
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 800;
+	font-size: 0.9vh;
+	white-space: pre;
+}
+.Member-Time {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 0.55vh;
+}
+.Member-Time-Icon-Container {
+	position: relative;
+	width: 1.12vh;
+	aspect-ratio: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 0.45vh;
+	filter: drop-shadow(0 0 0.2vh hsla(226.2, 100%, 64.1%, 0.5));
+	background: hsla(219.6, 100%, 59.6%, 0.6);
+}
+.Member-Time-Icon {
+	position: relative;
+	height: 0.7vh;
+}
+.Member-Time-Text {
+	position: relative;
+	color: hsla(0, 0%, 100%, 0.6);
+	font-family: 'Akrobat', sans-serif;
+	font-size: 0.9vh;
+}
+.Member-Time-Month {
+	position: relative;
+}
+.Member-Time-Slash {
+	position: relative;
+}
+.Member-Time-Day {
+	position: relative;
+	margin-right: 0.25vh;
+}
+.Member-Time-Hour {
+	position: relative;
+}
+.Member-Time-TwoDot {
+	position: relative;
+}
+.Member-Time-Min {
+	position: relative;
+}
+.Member-Btn-Container {
+	position: relative;
+	width: 100%;
+}
+.Member-Btn {
+	position: relative;
+	width: 100%;
+	height: 1.82vh;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.35vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 700;
+	font-size: 0.93vh;
+	text-transform: uppercase;
+	text-align: center;
+}
+.Member-Btn:hover {
+	filter: brightness(0.5);
+	color: hsl(0, 0%, 100%);
+}
+.Member-Btn:active {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+	color: hsl(0, 0%, 100%);
+	transition: none;
+}
+
+/*-_- App-BusinessUpgrade -_-*/
+.App-BusinessUpgrade {
+	--Page: 1;
+	counter-reset: BusinessUpgrade-Pages;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 1.7vh 5.4vh 11.25vh;
+}
+.BusinessUpgrade-Boxes-Continer {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	overflow: hidden;
+}
+.BusinessUpgrade-Boxes {
+	position: absolute;
+	transform: translateX(calc((-1 * (var(--Page) - 1) * (72.3vh))));
+	width: fit-content;
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+.BusinessUpgrade-Boxes-Page {
+	counter-increment: BusinessUpgrade-Pages;
+	position: relative;
+	width: calc(100% / var(--Pages));
+	width: 72.3vh;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 2.15vh;
+}
+.BusinessUpgrade-Box {
+	position: relative;
+	width: 22.63vh;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.BusinessUpgrade-Content-Box {
+	position: relative;
+	width: 100%;
+	height: calc(100% - 3.5vh);
+	border: 0.12vh solid hsla(225.5, 48.1%, 64.5%, 0.3);
+	border-radius: 1.4vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 0.83vh;
+	background: hsla(225.5, 48.1%, 64.5%, 0.1);
+}
+.BusinessUpgrade-Image-Box {
+	position: relative;
+	width: 100%;
+	height: 10.4vh;
+	border-radius: 1.4vh;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-end;
+	align-items: flex-start;
+	gap: 0.2vh;
+	padding: 1vh;
+	overflow: hidden;
+}
+.BusinessUpgrade-Image {
+	position: absolute;
+	transform: translate(-50%, -50%) !important;
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	top: 50%;
+	object-fit: cover;
+}
+.BusinessUpgrade-Image-Title {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 800;
+	text-transform: uppercase;
+}
+.BusinessUpgrade-Image-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsla(0, 0%, 100%, 0.6);
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 600;
+	font-size: 1.11vh;
+}
+.BusinessUpgrade-Sections {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+	gap: 1.61vh;
+}
+.BusinessUpgrade-Section {
+	position: relative;
+	height: 2.3vh;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.BusinessUpgrade-Section-Icon-Box {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 0.96;
+	border: 0.1vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 0.45vh;
+	filter: drop-shadow(0 0 1vh hsla(226.2, 100%, 64.1%, 0.5));
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.BusinessUpgrade-Section-Icon {
+	position: relative;
+	height: 0.95vh;
+}
+.BusinessUpgrade-Section-Title {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsla(0, 0%, 100%, 0.6);
+	font-weight: 300;
+	font-size: 1.1vh;
+	line-height: 87.5%;
+}
+.BusinessUpgrade-Section-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-weight: 300;
+	line-height: 87.5%;
+}
+.BusinessUpgrade-Btn-Container {
+	position: relative;
+	width: 100%;
+}
+.BusinessUpgrade-Btn {
+	position: relative;
+	width: 100%;
+	height: 3vh;
+	border: 0.1vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	transition: all 0.3s ease-in-out 0s !important;
+}
+.BusinessUpgrade-Btn:hover {
+	filter: brightness(0.5);
+}
+.BusinessUpgrade-Btn:active {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+	transition: none !important;
+}
+.BusinessUpgrade-Button-Container-Container {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 40.9%;
+}
+.BusinessUpgrade-Button-Container-Container:nth-child(3) {
+	left: 0.7vh;
+}
+.BusinessUpgrade-Button-Container-Container:nth-child(4) {
+	left: calc(100% - 0.7vh);
+}
+[data-PageStart="true"] .BusinessUpgrade-Button-Container-Container:nth-child(3) .BusinessUpgrade-Button-Container {
+	transform: translateX(-1vh);
+	pointer-events: none;
+	opacity: 0;
+	transition-delay: 0.1s;
+}
+[data-PageEnd="true"] .BusinessUpgrade-Button-Container-Container:nth-child(4) .BusinessUpgrade-Button-Container {
+	transform: translateX(1vh);
+	pointer-events: none;
+	opacity: 0;
+	transition-delay: 0.1s;
+}
+.BusinessUpgrade-Button-Container {}
+.BusinessUpgrade-Button {
+	position: relative;
+	height: 3.1vh;
+	aspect-ratio: 1;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.6vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.BusinessUpgrade-Button-Icon {
+	position: relative;
+	height: 1vh;
+}
+.BusinessUpgrade-Button-Right .BusinessUpgrade-Button-Icon {
+	transform: rotate(180deg);
+}
+.BusinessUpgrade-Button:hover {
+	filter: brightness(0.5);
+}
+.BusinessUpgrade-Button:active {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+	transition: none;
+}
+.Show-Pages {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: 5vh;
+	left: 50%;
+	top: 88.9%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 0vh 0.3vh;
+}
+.Show-Page-Text {
+	position: relative;
+	color: hsl(226, 100%, 64%);
+	font-size: 1.1vh;
+}
+.Show-Pages-Page::after {
+	counter-reset: BusinessUpgradePage var(--Page);
+	content: counter(BusinessUpgradePage);
+}
+.Show-Pages-Pages::after {
+	content: counter(BusinessUpgrade-Pages);
+}
+.Show-Pages-Title {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	text-align: center;
+}
+
+/*-_- App-Squads -_-*/
+.App-Squads {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 2.27vh 14.07vh 2.03vh;
+}
+.Squads-Top-Bar {
+	width: 100%;
+	height: 2.25vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.65vh;
+}
+.Squads-Alpha-Box {
+	position: relative;
+	width: 5.45vh;
+	height: 100%;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: radial-gradient(108.33% 108.33% at 50% 50%, hsla(219.6, 100%, 59.6%, 0.8) 0%, rgba(49, 119, 255, 0) 100%);
+}
+.Squads-RightSide .Squads-Alpha-Box {
+	border: 0.12vh solid hsl(151, 100%, 64%);
+	background: radial-gradient(108.33% 108.33% at 50% 50%, hsla(151.1, 100%, 64.1%, 0.8) 0%, rgba(72, 255, 167, 0) 100%);
+}
+.Squads-Alpha-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 600;
+	font-size: 0.7vh;
+	font-size: 1.09vh;
+	text-align: center;
+}
+.Squads-Alpha-Max {
+	position: relative;
+	margin-right: 0.3vh;
+}
+.Squads-Btns {
+	position: relative;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.6vh;
+}
+.Squads-Btn {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 1;
+	border-radius: 0.4vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.Squads-Btn:hover {
+	filter: brightness(0.5);
+}
+.Squads-Btn:active {
+	filter: brightness(1.5);
+	transition: none;
+}
+.Squads-Join-Btn {
+	background: hsl(220, 100%, 60%);
+}
+.Squads-Leave-Btn {
+	background: hsl(0, 100%, 64%);
+}
+.Squads-Btn-Icon {
+	position: relative;
+}
+.Squads-Join-Btn .Squads-Btn-Icon {
+	height: 1vh;
+}
+.Squads-Leave-Btn .Squads-Btn-Icon {
+	height: 1.3vh;
+}
+.Squads-LeftSide {
+	position: relative;
+	width: 48.9%;
+	height: 100%;
+}
+.Squads-Container {
+	position: relative;
+	width: 100%;
+	height: 1vh;
+	height: calc(100% - 2.9vh);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.9vh;
+	padding-right: 0.55vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: block mandatory;
+}
+.Active-Squad {
+	transform: translate(0vh, 0vh) scale(0.96);
+	transform-origin: left center;
+	filter: brightness(1.5) !important;
+}
+.Squads-Box {
+	position: relative;
+	width: 26vh;
+	height: 3.73vh;
+	border-radius: 0.9vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0.61vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	scroll-snap-align: start;
+}
+.Squads-Box:hover {
+	filter: brightness(0.5);
+}
+.Squads-Box-Slots {
+	position: relative;
+	width: 3.35vh;
+	height: 100%;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 1.1vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.Squads-Box-Slot-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 600;
+	font-size: 1.2vh;
+	text-align: center;
+}
+.Squads-Box-Name {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 600;
+	font-size: 1.289vh;
+}
+.Squads-RightSide {
+	position: relative;
+	width: 47.3%;
+	height: 100%;
+}
+.Squads-KDA-Container {
+	position: relative;
+	width: 100%;
+	height: 2.3vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0.45vh 1.25vh;
+	margin-bottom: 0.45vh;
+}
+.Squads-KDA-Text {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	color: hsla(0, 0%, 100%, 0.4);
+	font-family: 'Akrobat';
+	font-weight: 600;
+	font-size: 1.26vh;
+}
+.Squads-KDA-Name {
+	width: 11.2vh;
+	margin-right: 2.5vh;
+}
+.Squads-KDA-Kills {
+	margin-right: 3.15vh;
+}
+.Squads-KDA-Death {
+	margin-right: 2.2vh;
+}
+.Squads-KDA-Score {
+	margin-right: 0.5vh;
+}
+.Squads-Players-Container {
+	position: relative;
+	width: calc(100% + 1vh);
+	height: calc(100% - 5.65vh);
+	overflow: hidden;
+}
+.Squads-Players {
+	position: absolute;
+	transform: scaleY(0.7) translateY(-100%);
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.9vh;
+	padding-right: 0.75vh;
+	pointer-events: none;
+	opacity: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: block mandatory;
+}
+.Active-Squads-Players {
+	transform: scaleY(1) translate(0vh, 0vh);
+	pointer-events: all;
+	opacity: 1;
+}
+.Squads-Player-Box {
+	position: relative;
+	width: 25.9vh;
+	height: 3.8vh;
+	border-radius: 0.9vh;
+	display: flex;
+	justify-content: space-between;
+	padding-inline: 1.25vh 1.85vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	scroll-snap-align: start;
+}
+.Squads-Player-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 600;
+}
+.Squads-Player-Name {
+	width: 11.2vh;
+	justify-content: flex-start;
+}
+.Squads-Player-Kills {
+	width: 1.7vh;
+	justify-content: center;
+}
+.Squads-Player-Death {
+	width: 1.7vh;
+	justify-content: center;
+}
+.Squads-Player-Score {
+	width: 2.3vh;
+	justify-content: flex-end;
+}
+
+/*-_- App-BusinessBuy -_-*/
+.App-BusinessBuy {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 2.27vh 15.77vh 2.03vh;
+}
+.BusinessBuy-Top-Bar {
+	width: 100%;
+	height: 2.25vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.65vh;
+}
+.BusinessBuy-Alpha-Box {
+	position: relative;
+	width: 5.45vh;
+	height: 100%;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: radial-gradient(108.33% 108.33% at 50% 50%, hsla(219.6, 100%, 59.6%, 0.8) 0%, rgba(49, 119, 255, 0) 100%);
+}
+.BusinessBuy-RightSide .BusinessBuy-Alpha-Box {
+	border: 0.12vh solid hsl(151, 100%, 64%);
+	background: radial-gradient(108.33% 108.33% at 50% 50%, hsla(151.1, 100%, 64.1%, 0.8) 0%, rgba(72, 255, 167, 0) 100%);
+}
+.BusinessBuy-Alpha-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 600;
+	font-size: 0.7vh;
+	font-size: 1.09vh;
+	text-align: center;
+}
+.BusinessBuy-Alpha-Max {
+	position: relative;
+	margin-right: 0.3vh;
+}
+.BusinessBuy-Btns {
+	position: relative;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.6vh;
+}
+.BusinessBuy-Btn {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 1;
+	border-radius: 0.4vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.BusinessBuy-Btn:hover {
+	filter: brightness(0.5);
+}
+.BusinessBuy-Btn:active {
+	filter: brightness(1.5);
+	transition: none;
+}
+.BusinessBuy-Join-Btn {
+	background: hsl(220, 100%, 60%);
+}
+.BusinessBuy-Leave-Btn {
+	background: hsl(0, 100%, 64%);
+}
+.BusinessBuy-Btn-Icon {
+	position: relative;
+}
+.BusinessBuy-Join-Btn .BusinessBuy-Btn-Icon {
+	height: 1vh;
+}
+.BusinessBuy-Leave-Btn .BusinessBuy-Btn-Icon {
+	height: 1.3vh;
+}
+.BusinessBuy-LeftSide {
+	position: relative;
+	width: 52%;
+	height: 100%;
+}
+.BusinessBuy-Container {
+	position: relative;
+	width: 100%;
+	height: 1vh;
+	height: calc(100% - 2.9vh);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.9vh;
+	padding-right: 0.55vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: block mandatory;
+}
+.Active-BusinessBuy {
+	transform: translate(0vh, 0vh) scale(0.96);
+	transform-origin: left center;
+	filter: brightness(1.5) !important;
+}
+.BusinessBuy-Box {
+	position: relative;
+	width: 26vh;
+	height: 3.73vh;
+	border-radius: 0.9vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0.61vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	scroll-snap-align: start;
+}
+.BusinessBuy-Box:hover {
+	filter: brightness(0.5);
+}
+.BusinessBuy-Box-Slots {
+	position: relative;
+	width: 3.35vh;
+	height: 100%;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 1.1vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.BusinessBuy-Box-Slot-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 600;
+	font-size: 1.2vh;
+	text-align: center;
+}
+.BusinessBuy-Box-Name {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 600;
+	font-size: 1.289vh;
+}
+.BusinessBuy-RightSide {
+	position: relative;
+	width: 43.9%;
+	height: 100%;
+}
+.BusinessBuy-Stage-Container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.BusinessBuy-Stage {
+	position: absolute;
+	transform: scaleY(0.7) translateY(calc(-100%));
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.9vh;
+	padding-block: 2.85vh 1.95vh;
+	pointer-events: none;
+	opacity: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.Active-BusinessBuy-Stage {
+	transform: scale(1) translate(0vh, 0vh);
+	pointer-events: all;
+	opacity: 1;
+}
+.BusinessBuy-Stage-Box {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: space-between;
+	justify-content: space-between;
+	align-items: center;
+}
+.BusinessBuy-Content-Box {
+	position: relative;
+	width: 100%;
+	height: calc(100% - 7.1vh);
+	border: 0.12vh solid hsla(225.5, 48.1%, 64.5%, 0.3);
+	border-radius: 1.4vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 0.83vh;
+	background: hsla(225.5, 48.1%, 64.5%, 0.1);
+}
+.BusinessBuy-Image-Box {
+	position: relative;
+	width: 100%;
+	height: 10.4vh;
+	border-radius: 1.4vh;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-end;
+	align-items: flex-start;
+	gap: 0.2vh;
+	padding: 1vh;
+	overflow: hidden;
+}
+.BusinessBuy-Image {
+	position: absolute;
+	transform: translate(-50%, -50%) !important;
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	top: 50%;
+	object-fit: cover;
+}
+.BusinessBuy-Image-Title {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 800;
+	text-transform: uppercase;
+}
+.BusinessBuy-Image-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsla(0, 0%, 100%, 0.6);
+	font-family: 'Akrobat', sans-serif;
+	font-weight: 600;
+	font-size: 1.11vh;
+}
+.BusinessBuy-Sections {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+	gap: 1.61vh;
+}
+.BusinessBuy-Section {
+	position: relative;
+	height: 2.3vh;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.BusinessBuy-Section-Icon-Box {
+	position: relative;
+	height: 100%;
+	aspect-ratio: 0.96;
+	border: 0.1vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 0.45vh;
+	filter: drop-shadow(0 0 1vh hsla(226.2, 100%, 64.1%, 0.5));
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.BusinessBuy-Section-Icon {
+	position: relative;
+	height: 0.95vh;
+}
+.BusinessBuy-Section-Title {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsla(0, 0%, 100%, 0.6);
+	font-weight: 300;
+	font-size: 1.1vh;
+	line-height: 87.5%;
+}
+.BusinessBuy-Section-Text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-weight: 300;
+	line-height: 87.5%;
+}
+.BusinessBuy-Btn-Container {
+	position: relative;
+	width: 100%;
+}
+.BusinessBuy-Btn-Container-Half {
+	width: calc(50% - 0.3vh);
+}
+.BusinessBuy-Btn {
+	position: relative;
+	width: 100%;
+	height: 3vh;
+	border: 0.1vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsla(220, 100%, 60%, 0.25);
+	transition: all 0.3s ease-in-out 0s !important;
+}
+.BusinessBuy-Btn:hover {
+	filter: brightness(0.5);
+}
+.BusinessBuy-Btn:active {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+	transition: none !important;
+}
+.BusinessBuy-Sell-Btn {
+	border: 0.1vh solid hsl(0, 100%, 60%);
+	background: hsla(0, 100%, 60%, 0.25);
+}
+.BusinessBuy-Sell-Btn:active {
+	filter: brightness(1) !important;
+	background: hsl(0, 100%, 60%);
+}
+
+/*-_- App-BuyVehicle -_-*/
+.App-BuyVehicle {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 2.3vh 5.95vh 5.1vh 7.25vh;
+}
+.BuyVehicle-Tabs {
+	position: relative;
+	height: 3.25vh;
+	display: flex;
+	flex-direction: row;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: center;
+	gap: 1vh;
+	margin-bottom: 1.83vh;
+}
+.BuyVehicle-Tab {
+	position: relative;
+	width: 11.15vh;
+	height: 100%;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-inline: 1.5vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+}
+.BuyVehicle-Tab:hover {
+	filter: brightness(0.5);
+}
+[data-ShowingTab="Buy"] .BuyVehicle-Tab-Buy {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+}
+[data-ShowingTab="Own"] .BuyVehicle-Tab-Own {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+}
+.BuyVehicle-Tab-Fav {
+	min-width: 7.6vh;
+	width: fit-content;
+	border: 0.12vh solid hsl(45, 100%, 60%);
+	background: hsla(45, 100%, 60%, 0.25);
+}
+.BuyVehicle-Tab-Fav::after {
+	content: "Fav Only";
+}
+[data-ShowFav="true"] .BuyVehicle-Tab-Fav::after {
+	content: "All";
+}
+.BuyVehicle-Tab-Fav:active {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(45, 100%, 60%);
+	transition: none;
+}
+.BuyVehicle-Sections-Container {
+	position: relative;
+	width: 100%;
+	height: 34vh;
+	overflow: hidden;
+}
+.BuyVehicle-Sections {
+	position: absolute;
+	width: 200%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+[data-ShowingTab="Buy"] .BuyVehicle-Sections {
+	transform: translateX(-0%);
+}
+[data-ShowingTab="Own"] .BuyVehicle-Sections {
+	transform: translateX(-50%);
+}
+.BuyVehicle-Section {
+	position: relative;
+	width: 50%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.9vh 0.8vh;
+	padding-right: 0.6vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: block mandatory;
+}
+[data-ShowFav="true"] .BuyVehicle-Box-Container {
+	display: none;
+}
+[data-ShowFav="true"] .BuyVehicle-Box-Container[data-Fav="true"] {
+	display: flex;
+}
+.BuyVehicle-Box {
+	position: relative;
+	width: 13.1vh;
+	height: 13.05vh;
+	border-radius: 1.25vh;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: space-between;
+	justify-content: space-between;
+	padding: 0.93vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	scroll-snap-align: start;
+}
+[data-UA="true"] .BuyVehicle-Box-Title {
+	opacity: 0.2;
+}
+.BuyVehicle-Box-Title {
+	position: relative;
+	max-width: 8.6vh;
+	/* margin-left: 0.2vh; */
+	/* margin-top: 0.15vh; */
+	/* or 15px */
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 600;
+	line-height: 1.4vh;
+}
+.BuyVehicle-Box-Fav-Box {
+	position: relative;
+	width: 1.8vh;
+	height: 1.8vh;
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: -1vh;
+	/* margin-right: 0.45vh; */
+	/* margin-top: 0.45vh; */
+	filter: grayscale(1);
+	background: radial-gradient(60.25% 47.37% at 50% 50%, hsla(49, 100%, 55.1%, 0.7) 0%, hsla(49.2, 80.6%, 36.5%, 0.8) 100%);
+}
+[data-Fav="true"] .BuyVehicle-Box-Fav-Box {
+	filter: grayscale(0);
+}
+.BuyVehicle-Box-Fav-Box .Border::after {
+	background: radial-gradient(hsl(49, 100%, 55%), transparent 90%);
+}
+.BuyVehicle-Box-Fav-Box-Icon {
+	position: relative;
+	height: 0.93vh;
+	filter: brightness(0.2) invert(1);
+}
+[data-Fav="true"] .BuyVehicle-Box-Fav-Box-Icon {
+	filter: grayscale(0);
+}
+.BuyVehicle-Box-Image-Container {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: calc(100% - 1vh);
+	height: 6.9vh;
+	left: 50%;
+	top: 52.6%;
+	pointer-events: none;
+}
+.BuyVehicle-Box-Image {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	left: 50%;
+	top: 50%;
+	object-fit: contain;
+}
+[data-UA="true"] .BuyVehicle-Box-Image {
+	opacity: 0.2;
+}
+.BuyVehicle-Box-Lock-Icon {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	height: 3.4vh;
+	left: 50%;
+	top: 50%;
+	display: none;
+	pointer-events: none;
+}
+[data-UA="true"] .BuyVehicle-Box-Lock-Icon {
+	display: block;
+}
+.BuyVehicle-Box-Btn-Container {
+	width: 100%;
+}
+.BuyVehicle-Box-Btn {
+	position: relative;
+	width: 100%;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.6vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-block: 0.32vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.BuyVehicle-OwnSection .BuyVehicle-Box-Btn {
+	pointer-events: none;
+}
+.BuyVehicle-Box-Btn:hover {
+	filter: brightness(0.5);
+}
+.BuyVehicle-Box-Btn:active {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+	transition: none;
+}
+[data-UA="true"] .BuyVehicle-Box-Btn {
+	border: 0.12vh solid hsl(0, 100%, 55%);
+	pointer-events: none;
+	background: hsla(0, 100%, 55.1%, 0.3);
+}
+.BuyVehicle-Box-Btn div {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-top: -0.1vh;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 700;
+	font-size: 1.1vh;
+	text-transform: uppercase;
+	text-align: center;
+}
+[data-UA="true"] .BuyVehicle-Price {
+	display: none;
+}
+.BuyVehicle-Price::before {
+	content: "$\00a0";
+}
+.BuyVehicle-Not {
+	display: none !important;
+}
+[data-UA="true"] .BuyVehicle-Not {
+	display: flex !important;
+}
+.BuyVehicle-OwnSection .BuyVehicle-Price,
+.BuyVehicle-OwnSection .BuyVehicle-Not {
+	display: none;
+}
+.BuyVehicle-Plate {
+	text-transform: uppercase;
+}
+.BuyVehicle-BuySection .BuyVehicle-Plate {
+	display: none
+}
+.BuyVehicle-OwnSection .BuyVehicle-Plate {
+	display: flex;
+}
+
+/*-_- App-BuyItem -_-*/
+.App-BuyItem {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 2.3vh 2.65vh 1.2vh 3.37vh;
+}
+.BuyItem-Tabs {
+	position: relative;
+	height: 3.25vh;
+	display: flex;
+	flex-direction: row;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: center;
+	gap: 1vh;
+	margin-bottom: 2.55vh;
+}
+.BuyItem-Tab {
+	position: relative;
+	width: 11.15vh;
+	height: 100%;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-inline: 1.5vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+}
+.BuyItem-Tab:hover {
+	filter: brightness(0.5);
+}
+[data-ShowingTab="Shop"] .BuyItem-Tab-Shop {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+}
+[data-ShowingTab="Delivery"] .BuyItem-Tab-Delivery {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+}
+[data-ShowingTab="Lager"] .BuyItem-Tab-Lager {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+}
+.BuyItem-Sections-Container {
+	position: relative;
+	width: 100%;
+	height: 32vh;
+	overflow: hidden;
+}
+.BuyItem-Sections {
+	position: absolute;
+	width: 300%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+[data-ShowingTab="Shop"] .BuyItem-Sections {
+	transform: translateX(calc((-100% / 3) * 0));
+}
+[data-ShowingTab="Delivery"] .BuyItem-Sections {
+	transform: translateX(calc((-100% / 3) * 1));
+}
+[data-ShowingTab="Lager"] .BuyItem-Sections {
+	transform: translateX(calc((-100% / 3) * 2));
+}
+.BuyItem-Section {
+	position: relative;
+	width: calc((100% / 3) - 0.1vh);
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 1.55vh;
+	padding-right: 0.3vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: block mandatory;
+}
+.BuyItem-Lager {
+	display: flex;
+	align-content: flex-start;
+	justify-content: flex-start;
+	gap: 0.85vh 2.85vh;
+	padding-left: 9vh;
+}
+.BuyItem-Box {
+	position: relative;
+	width: 17.9vh;
+	height: 9vh;
+	border-radius: 1.05vh;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: space-between;
+	justify-content: space-between;
+	padding: 0.93vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+	scroll-snap-align: start;
+}
+.BuyItem-Lager .BuyItem-Box {
+	width: 18.4vh;
+	min-height: 6.7vh;
+	height: unset;
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.1vh;
+	padding-left: 6.9vh;
+}
+.BuyItem-Box-Image-Container {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: 8vh;
+	height: 100%;
+	left: 9%;
+	top: 50%;
+}
+.BuyItem-Box-Image {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.BuyItem-Box-Title {
+	position: relative;
+	/* max-width: 13.3vh; */
+	width: calc(100% - 2.9vh);
+	margin-left: 0.25vh;
+	/* identical to box height */
+	color: hsl(0, 0%, 100%);
+	/* margin-top: 0.45vh; */
+	font-family: 'Akrobat';
+	font-weight: 800;
+	font-size: 2.33vh;
+}
+.BuyItem-Lager .BuyItem-Box-Title {
+	width: fit-content;
+	height: 1.9vh;
+	margin-left: 0;
+	font-family: 'Akrobat';
+	font-weight: 700;
+	font-size: 1.85vh;
+}
+.BuyItem-Box-Stock {
+	position: relative;
+	width: 4.6vh;
+	height: 2.1vh;
+	border: 0.12vh solid hsl(220, 100%, 60%);
+	border-radius: 0.4vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 0.13vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 700;
+	font-size: 1.45vh;
+	text-transform: uppercase;
+	text-align: center;
+}
+[data-Ready="true"] .BuyItem-Box-DeliveryTime {
+	opacity: 0;
+}
+.BuyItem-Box-DeliveryTime::before {
+	content: "DELIVERY:";
+	color: hsla(0, 0%, 100%, 0.6);
+}
+.BuyItem-Box-DeliveryTime {
+	position: absolute;
+	max-width: 4.1vh;
+	left: 6.2vh;
+	top: 55%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	font-family: 'Akrobat';
+	font-weight: 700;
+	font-size: 1.1vh;
+	text-transform: uppercase;
+}
+.BuyItem-Box-Price {
+	position: relative;
+	width: 97%;
+	margin-left: 0.3vh;
+	margin-bottom: 0.25vh;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 700;
+	font-size: 1.9vh;
+}
+.BuyItem-Box-Price::before {
+	content: "$\00a0";
+}
+.BuyItem-Box-Buy-Btn {
+	position: relative;
+	width: 2.25vh;
+	height: 2.25vh;
+	border-radius: 0.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsl(220, 100%, 60%);
+}
+.BuyItem-Box-Buy-Btn:hover {
+	filter: brightness(0.5);
+}
+.BuyItem-Box-Buy-Btn:active {
+	border-color: transparent;
+	filter: brightness(1.5);
+	transition: none;
+}
+[data-UA="true"] .BuyItem-Box-Buy-Btn {
+	border: 0.1vh solid hsl(0, 100%, 65%);
+	pointer-events: none;
+	background: hsla(0, 100%, 55.1%, 0.3);
+}
+.BuyItem-Box-Buy-Btn-Icon {
+	position: absolute;
+	width: 1vh;
+}
+.BuyItem-Box-Buy-Btn-Lock-Icon {
+	opacity: 0;
+}
+[data-UA="true"] .BuyItem-Box-Buy-Btn-Lock-Icon {
+	opacity: 1;
+}
+[data-UA="true"] .BuyItem-Box-Buy-Btn-Cart-Icon {
+	opacity: 0;
+}
+.BuyItem-Amount-Box {
+	position: relative;
+	width: calc(100%);
+	height: 2.8vh;
+	border-radius: 0.6vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	/* padding-block: 0.77vh; */
+	margin-top: 0.65vh;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsla(225.5, 48.1%, 64.5%, 0.3) 0%, hsla(225, 22.2%, 10.6%, 0.1) 100%);
+}
+.BuyItem-Collect {
+	display: none !important;
+}
+[data-Ready="true"] .BuyItem-Collect {
+	display: flex !important;
+}
+[data-Ready="true"] .BuyItem-Amount-Box {
+	pointer-events: all !important;
+	background: hsl(220, 100%, 60%);
+}
+[data-Ready="true"] .BuyItem-Amount-Box:hover {
+	filter: brightness(0.5);
+}
+[data-Ready="true"] .BuyItem-Amount-Box:active {
+	border-color: transparent;
+	filter: brightness(1.5);
+	transition: none;
+}
+[data-Ready="true"] .BuyItem-Amount-Box .Border {
+	opacity: 0;
+}
+[data-Ready="true"] .BuyItem-Time {
+	display: none;
+}
+.BuyItem-Delivery .BuyItem-Amount-Box {
+	justify-content: center;
+	pointer-events: none;
+}
+.BuyItem-Delivery:empty {
+	pointer-events: all;
+}
+[data-UA="true"] .BuyItem-Amount-Box {
+	justify-content: center;
+	pointer-events: none;
+	background: radial-gradient(87.59% 104.93% at 50% 50%, hsl(0, 100%, 65%) 0%, hsla(0, 22.2%, 10.6%, 0.4) 100%);
+}
+.BuyItem-Amount-Box .Border::after {
+	background: radial-gradient(ellipse 50% 100% at 50% 50%, hsl(0, 0%, 100%), transparent 90%);
+}
+[data-UA="true"] .BuyItem-Amount-Box .Border::after {
+	background: radial-gradient(hsl(0, 100%, 66%), transparent 90%);
+}
+.BuyItem-Amount-Box div {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: hsl(0, 0%, 100%);
+	font-family: 'Akrobat';
+	font-weight: 700;
+	font-size: 1.36vh;
+	text-transform: uppercase;
+	text-align: center;
+}
+[data-UA="true"] .BuyItem-Amount {
+	display: none;
+}
+.BuyItem-Not {
+	display: none !important;
+}
+[data-UA="true"] .BuyItem-Not {
+	display: flex !important;
+}
+.BuyItem-OwnSection .BuyItem-Amount,
+.BuyItem-OwnSection .BuyItem-Not {
+	display: none;
+}
+[data-UA="true"] .BuyItem-Amount-Btn-Container {
+	display: none;
+}
+.BuyItem-Amount-Icon {
+	position: relative;
+	width: 0.9vh;
+}
+.BuyItem-Amount-Btn-Container {
+	height: 100%;
+}
+.BuyItem-Amount-Btn {
+	position: absolute;
+	height: 100%;
+	aspect-ratio: 1;
+	border: 0.1vh solid hsl(220, 100%, 60%);
+	border-radius: 0.6vh;
+	background: hsla(219.6, 100%, 59.6%, 0.3);
+}
+.BuyItem-Amount-Btn:hover {
+	filter: brightness(0.5);
+}
+.BuyItem-Amount-Btn:active {
+	border-color: transparent;
+	filter: brightness(1) !important;
+	background: hsl(220, 100%, 60%);
+	transition: none !important;
+}
+.BuyItem-Delivery .BuyItem-Box {
+	height: 6.9vh;
+}
